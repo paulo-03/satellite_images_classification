@@ -8,6 +8,7 @@ Author: Paulo Ribeiro
 import torch
 import torch.nn as nn
 import torch.optim as optim
+from tqdm.notebook import tqdm
 from torchvision import datasets, transforms, models
 from torch.utils.data import DataLoader, random_split
 from sklearn.metrics import f1_score, classification_report, confusion_matrix
@@ -131,7 +132,7 @@ class ResNET():
             # Training phase
             self.model.train()
             running_loss = 0.0
-            for images, labels in self.train_loader:
+            for images, labels in tqdm(self.train_loader):
                 images, labels = images.to(self.device), labels.to(self.device)
 
                 # Forward pass
@@ -200,7 +201,7 @@ class ResNET():
         self.model.eval()
         test_preds, test_labels = [], []
         with torch.no_grad():
-            for images, labels in self.test_loader:
+            for images, labels in tqdm(self.test_loader):
                 images, labels = images.to(self.device), labels.to(self.device)
                 outputs = self.model(images)
                 _, preds = torch.max(outputs, 1)
