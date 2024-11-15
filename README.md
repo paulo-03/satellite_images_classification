@@ -15,12 +15,13 @@ This repository contains my implementations for a satellite image classification
 
 ## My Solution and Observations
 
-1. **Model Comparison**: The deep learning model (ResNet18) outperformed the baseline, improving all metrics (accuracy, precision, recall, and F1-score) by 2-3%. However, both models struggled with certain misclassifications:
-   - **Water images** were frequently mistaken for green areas.
-   - The **baseline model** was especially sensitive to desert images, often predicting them as cloudy.
+1. **Model Comparison**: The baseline model outperformed the deep learning model (ResNet18), outperforming all metrics (accuracy, precision, recall, and F1-score) by 3%. However, both models struggled with certain misclassifications:
+   - **Green areas** images are sometimes mistaken for **water**.
+   - **Desert** images are sometimes mistaken for **cloudy**. 
+   - The **deep learning model** was especially sensitive to **green areas** images, often predicting them as **water**.
 
-2. **Further Fine-tuning**: Increasing the number of training epochs could further enhance the model, as the loss trend suggests it hasn’t yet reached a plateau. This may bring the model closer to a perfect classifier.
+2. **Further Fine-tuning**: Increasing the number of training epochs could further enhance the model, as the loss trend suggests it hasn’t yet reached a plateau. This may bring the model closer to a perfect classifier and then outperform the baseline.
 
-3. **Baseline Performance**: Despite its simplicity, the baseline model performed reasonably well and is efficient in terms of computational resources for both training and inference.
+3. **Baseline Performance**: Despite its simplicity, the baseline model performed really well and is efficient in terms of computational resources for both training and inference.
 
 > **_Note:_** This exercise was allocated 8 hours; I estimate I spent approximately 7 hours completing it.

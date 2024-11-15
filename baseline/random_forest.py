@@ -4,10 +4,11 @@ This paython script implement the classifier class used to classify the satellit
 Author: Paulo Ribeiro
 """
 import matplotlib.pyplot as plt
+import seaborn as sns
 import numpy as np
 import cv2
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, confusion_matrix
 
 SEED = 42
 
@@ -30,6 +31,18 @@ class Classifier:
         error_ids = np.where(predictions != labels)[0]
         misclassified_images = np.asarray(img_paths)[error_ids]
         wrong_predictions = predictions[error_ids]
+
+        # Generate the confusion matrix
+        cm = confusion_matrix(labels, predictions)
+
+        # Plot the confusion matrix
+        plt.figure(figsize=(10, 8))
+        sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=["cloudy", "desert", "green_area", "water"],
+                    yticklabels=["cloudy", "desert", "green_area", "water"])
+        plt.xlabel('Predicted Labels')
+        plt.ylabel('True Labels')
+        plt.title('Confusion Matrix')
+        plt.show()
         return misclassified_images, wrong_predictions
 
     @staticmethod
